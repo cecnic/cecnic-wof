@@ -89,15 +89,15 @@
         <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 20%, white 1px, transparent 1px); background-size: 26px 26px;"></div>
         <div class="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div>
-            <p class="uppercase tracking-[0.35em] text-xs md:text-sm text-blue-100">Sistema de Participaciones</p>
+            <p class="uppercase tracking-[0.35em] text-xs md:text-sm text-blue-100">CECNIC</p>
             <h1 class="text-3xl md:text-5xl font-black mt-2">WOF CECNIC</h1>
             <p class="mt-3 text-blue-100 max-w-2xl text-sm md:text-base">
-              Control visual de asistencia, participación y reconocimientos por estudiante. Selecciona alumnos, asigna emojis desde <strong>La parte derecha</strong> y genera una imagen lista para compartir con los padres
+              Registro visual de participaciones del curso.
             </p>
           </div>
           <div class="bg-white/12 border border-white/20 rounded-3xl p-5 min-w-[290px]">
             <div class="text-sm text-blue-100">Curso actual</div>
-            <input id="courseName" value="Curso Inglés Kids" class="mt-2 w-full rounded-2xl bg-white text-slate-900 px-4 py-3 font-semibold outline-none" />
+            <input id="courseName" value="Nombre del curso" class="mt-2 w-full rounded-2xl bg-white text-slate-900 px-4 py-3 font-semibold outline-none" />
             <div class="grid grid-cols-2 gap-3 mt-3">
               <div class="rounded-2xl bg-white/10 border border-white/15 p-3">
                 <div class="text-xs text-blue-100">Fecha</div>
@@ -117,7 +117,7 @@
           <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
             <div>
               <h2 class="text-2xl font-black panel-title">Lista de estudiantes</h2>
-              <p class="text-slate-600 text-sm">Marca alumnos, cambia asistencia y asigna sus participaciones visuales.</p>
+              <p class="text-slate-600 text-sm">Estudiantes del curso</p>
             </div>
             <div class="flex flex-wrap gap-2">
               <button onclick="selectAll(true)" class="px-4 py-2 rounded-2xl bg-blue-600 text-white font-semibold hover:scale-[1.02] transition">Seleccionar todos</button>
@@ -135,7 +135,7 @@
             <div class="flex items-center justify-between gap-3">
               <div>
                 <h2 class="text-2xl font-black panel-title">Emojis / Participaciones</h2>
-                <p class="text-slate-600 text-sm">Escoge por número. Las imágenes salen desde tu carpeta <strong>assets</strong>.</p>
+                <p class="text-slate-600 text-sm">Seleccionar participación</p>
               </div>
               <div class="badge-wof rounded-2xl px-4 py-2 text-sm font-bold">Activos: <span id="selectedCountSide">0</span></div>
             </div>
@@ -152,7 +152,7 @@
 
           <section class="glass rounded-[28px] p-4 md:p-6">
             <h2 class="text-2xl font-black panel-title">Mensaje automático</h2>
-            <p class="text-slate-600 text-sm mb-4">Este texto se actualiza para que solo copies y pegues.</p>
+            <p class="text-slate-600 text-sm mb-4">Mensaje del curso</p>
             <textarea id="messageBox" rows="8" class="w-full rounded-[24px] border border-blue-200 bg-white px-4 py-4 outline-none resize-none">Excelente trabajo. Esta es la participación destacada del día en CECNIC. ¡Sigamos aprendiendo con entusiasmo, disciplina y alegría!</textarea>
             <div class="grid grid-cols-2 gap-3 mt-4">
               <button onclick="generateMessage()" class="rounded-2xl px-4 py-3 bg-blue-100 text-blue-900 font-bold">Actualizar mensaje</button>
@@ -167,7 +167,7 @@
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
             <div>
               <h2 class="text-2xl font-black panel-title">Vista previa WOF</h2>
-              <p class="text-slate-600 text-sm">Genera la tarjeta visual y luego expórtala como imagen.</p>
+              <p class="text-slate-600 text-sm">Vista del registro del curso</p>
             </div>
             <div class="flex flex-wrap gap-3">
               <button onclick="renderWof()" class="rounded-2xl px-5 py-3 bg-gradient-to-r from-[#1d4ed8] to-[#0b1f4d] text-white font-extrabold shadow-lg">Generar WOF</button>
@@ -182,7 +182,7 @@
               <div>
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-wof text-sm font-bold">⭐ WOF · Wall of Fame</div>
                 <h3 id="wofTitle" class="text-3xl md:text-4xl font-black text-slate-900 mt-4">Participaciones destacadas CECNIC</h3>
-                <p id="wofSubtitle" class="text-slate-600 mt-2">Reconocimiento visual del curso y control diario de asistencia.</p>
+                <p id="wofSubtitle" class="text-slate-600 mt-2">Registro de participaciones</p>
               </div>
               <div class="grid grid-cols-2 gap-3 min-w-[280px]">
                 <div class="rounded-[24px] bg-white border border-blue-100 p-4">
@@ -210,7 +210,16 @@
 
   <script>
     const students = [
-      { name: 'Ashley López',  emoji: null, selected: false },
+      { name: 'Ashley López', emojis: [], selected: false },
+      { name: 'Carlos Mendoza', emojis: [], selected: false },
+      { name: 'Daniela Ruiz', emojis: [], selected: false },
+      { name: 'Emiliano Pérez', emojis: [], selected: false },
+      { name: 'Fernanda García', emojis: [], selected: false },
+      { name: 'Jairo Torres', emojis: [], selected: false },
+      { name: 'Lucía Hernández', emojis: [], selected: false },
+      { name: 'María José Silva', emojis: [], selected: false },
+      { name: 'Nicolás Aguilar', emojis: [], selected: false },
+      { name: 'Samuel Flores', emojis: [], selected: false }
     ];
 
     const emojiCatalog = [
@@ -235,6 +244,7 @@
     const selectedCountSide = document.getElementById('selectedCountSide');
 
     function getAssetsPath(){ return 'assets/emojis'; }
+    function emojiPath(file){ return getAssetsPath() + '/' + file; }
 
     function todayText(){
       return new Date().toLocaleDateString('es-NI', {
@@ -242,16 +252,34 @@
       });
     }
 
-    function emojiPath(file){
-      return `${getAssetsPath()}/${file}`;
+    function initials(name){
+      return name.split(' ').map(v => v[0]).slice(0,2).join('');
+    }
+
+    function emojiPreviewHtml(emojis, size = 'w-8 h-8'){
+      if(!emojis || !emojis.length){
+        return '<div class="text-[11px] text-slate-400 font-bold text-center px-2">Sin emoji</div>';
+      }
+      return '<div class="flex flex-wrap gap-2">' + emojis.map(function(e){
+        return '<img src="' + emojiPath(e.file) + '" alt="' + e.title + '" class="' + size + ' rounded-xl border border-blue-100 bg-white object-cover shadow-sm">';
+      }).join('') + '</div>';
+    }
+
+    function emojiBadgesHtml(emojis){
+      if(!emojis || !emojis.length){
+        return '<span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-500">Sin emoji</span>';
+      }
+      return emojis.map(function(e){
+        return '<span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">#' + e.id + ' ' + e.title + '</span>';
+      }).join(' ');
     }
 
     function renderStudents(){
       studentList.innerHTML = '';
 
-      students.forEach((student, index) => {
+      students.forEach(function(student, index){
         const row = document.createElement('div');
-        row.className = `student-row ${student.selected ? 'selected' : ''} ${true ? 'present' : 'absent'} rounded-[24px] border border-blue-100 bg-white p-4 transition`;
+        row.className = 'student-row ' + (student.selected ? 'selected ' : '') + 'rounded-[24px] border border-blue-100 bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-lg';
 
         row.innerHTML = `
           <div class="flex flex-col xl:flex-row xl:items-center gap-4">
@@ -261,28 +289,18 @@
               </label>
 
               <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-200 flex items-center justify-center text-blue-900 font-black text-lg shadow-sm shrink-0">
-                ${student.name.split(' ').map(v => v[0]).slice(0,2).join('')}
+                ${initials(student.name)}
               </div>
 
               <div class="min-w-0 flex-1">
                 <div class="font-black text-lg text-slate-900 truncate">${student.name}</div>
-                <div class="flex flex-wrap items-center gap-2 mt-2">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold ${true ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
-                    
-                  </span>
-                  ${student.emoji ? `<span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Emoji #${student.emoji.id} · ${student.emoji.title}</span>` : '<span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-500">Sin emoji</span>'}
-                </div>
+                <div class="flex flex-wrap items-center gap-2 mt-2">${emojiBadgesHtml(student.emojis)}</div>
               </div>
             </div>
 
             <div class="flex flex-wrap items-center gap-3 xl:justify-end">
-              <div class="flex items-center rounded-2xl overflow-hidden border border-blue-200">
-                <button onclick="setAttendance(${index}, 'P')" class="px-4 py-2 font-black ${true ? 'bg-green-600 text-white' : 'bg-white text-slate-700'}">P</button>
-                <button onclick="setAttendance(${index}, 'A')" class="px-4 py-2 font-black ${student.attendance === 'A' ? 'bg-red-600 text-white' : 'bg-white text-slate-700'}">A</button>
-              </div>
-
-              <div class="w-16 h-16 rounded-[20px] border border-blue-100 bg-slate-50 overflow-hidden flex items-center justify-center">
-                ${student.emoji ? `<img src="${emojiPath(student.emoji.file)}" alt="${student.emoji.title}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div style="display:none" class="w-full h-full items-center justify-center text-[10px] font-bold text-slate-400 p-2 text-center">Falta imagen</div>` : '<div class="text-[11px] text-slate-400 font-bold text-center px-2">Sin emoji</div>'}
+              <div class="min-h-[64px] min-w-[90px] rounded-[20px] border border-blue-100 bg-slate-50 p-2 overflow-hidden flex items-center justify-center">
+                ${emojiPreviewHtml(student.emojis)}
               </div>
             </div>
           </div>
@@ -296,10 +314,10 @@
 
     function renderEmojiGrid(){
       emojiGrid.innerHTML = '';
-      emojiCatalog.forEach(item => {
+      emojiCatalog.forEach(function(item){
         const card = document.createElement('button');
-        card.className = `emoji-card ${selectedEmojiId === item.id ? 'active' : ''} rounded-[24px] border-2 border-blue-100 bg-white p-3 text-left transition`;
-        card.onclick = () => {
+        card.className = 'emoji-card ' + (selectedEmojiId === item.id ? 'active ' : '') + 'rounded-[24px] border-2 border-blue-100 bg-white p-3 text-left transition hover:-translate-y-1';
+        card.onclick = function(){
           selectedEmojiId = item.id;
           renderEmojiGrid();
         };
@@ -328,45 +346,40 @@
     }
 
     function selectAll(value){
-      students.forEach(s => s.selected = value);
-      renderStudents();
-    }
-
-    function setAttendance(index, value){
-      students[index].attendance = value;
+      students.forEach(function(s){ s.selected = value; });
       renderStudents();
     }
 
     function assignSelectedEmoji(){
-      const emoji = emojiCatalog.find(e => e.id === selectedEmojiId);
-      students.forEach(student => {
-        if(student.selected) student.emoji = emoji;
+      const emoji = emojiCatalog.find(function(e){ return e.id === selectedEmojiId; });
+      students.forEach(function(student){
+        if(student.selected){
+          student.emojis.push({ id: emoji.id, title: emoji.title, file: emoji.file });
+        }
       });
       renderStudents();
       renderWof();
     }
 
     function clearEmojisSelected(){
-      students.forEach(student => {
-        if(student.selected) student.emoji = null;
+      students.forEach(function(student){
+        if(student.selected) student.emojis = [];
       });
       renderStudents();
       renderWof();
     }
 
     function updateSelectedCount(){
-      const total = students.filter(s => s.selected).length;
-      selectedCountTop.textContent = `${total} alumno${total === 1 ? '' : 's'}`;
+      const total = students.filter(function(s){ return s.selected; }).length;
+      selectedCountTop.textContent = total + ' alumno' + (total === 1 ? '' : 's');
       selectedCountSide.textContent = total;
     }
 
     function generateMessage(){
       const course = document.getElementById('courseName').value.trim() || 'Curso';
-      const destacados = students.filter(s => s.emoji && s.attendance === 'P').map(s => s.name);
-      const presentes = students.filter(s => s.attendance === 'P').length;
-      const ausentes = students.filter(s => s.attendance === 'A').length;
-
-      const text = `CECNIC informa las participaciones destacadas de ${course}. Presentes: ${presentes}. Ausentes: ${ausentes}. ${destacados.length ? 'Reconocidos del día: ' + destacados.join(', ') + '.' : 'Aún no hay reconocimientos asignados.'} ¡Felicitamos el esfuerzo, la disciplina y el entusiasmo de nuestros estudiantes!`;
+      const destacados = students.filter(function(s){ return s.emojis.length; }).map(function(s){ return s.name; });
+      const totalParticipaciones = students.reduce(function(n, s){ return n + s.emojis.length; }, 0);
+      const text = 'CECNIC informa las participaciones destacadas de ' + course + '. Participaciones registradas: ' + totalParticipaciones + '. ' + (destacados.length ? 'Estudiantes reconocidos: ' + destacados.join(', ') + '.' : 'Aún no hay reconocimientos asignados.') + ' ¡Felicitamos el esfuerzo, la disciplina y el entusiasmo de nuestros estudiantes!';
       document.getElementById('messageBox').value = text;
       renderWof();
     }
@@ -390,39 +403,36 @@
       wofDate.textContent = dateText;
       wofCourse.textContent = course;
       wofMessage.textContent = message;
-      document.getElementById('wofTitle').textContent = `Participaciones destacadas · ${course}`;
+      document.getElementById('wofTitle').textContent = 'Participaciones destacadas · ' + course;
 
-      const visibles = students.filter(s => s.attendance === 'P' || s.emoji);
-      wofStudents.innerHTML = visibles.map(student => `
-        <div class="rounded-[28px] bg-white border border-blue-100 p-4 shadow-sm">
-          <div class="flex items-center gap-4">
-            <div class="w-16 h-16 rounded-[22px] bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-200 flex items-center justify-center text-blue-900 font-black text-lg shrink-0">
-              ${student.name.split(' ').map(v => v[0]).slice(0,2).join('')}
-            </div>
-            <div class="min-w-0 flex-1">
-              <div class="font-black text-slate-900 text-lg leading-tight">${student.name}</div>
-              <div class="mt-2 flex flex-wrap gap-2">
-                <span class="px-3 py-1 rounded-full text-xs font-bold ${true ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">${student.attendance}</span>
-                ${student.emoji ? `<span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">#${student.emoji.id} ${student.emoji.title}</span>` : '<span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-500">Sin emoji</span>'}
+      const visibles = students.filter(function(s){ return s.emojis.length || s.selected; });
+      wofStudents.innerHTML = visibles.map(function(student){
+        return `
+          <div class="rounded-[28px] bg-white border border-blue-100 p-4 shadow-sm hover:-translate-y-1 transition">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-[22px] bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-200 flex items-center justify-center text-blue-900 font-black text-lg shrink-0">
+                ${initials(student.name)}
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="font-black text-slate-900 text-lg leading-tight">${student.name}</div>
+                <div class="mt-2 flex flex-wrap gap-2">${emojiBadgesHtml(student.emojis)}</div>
               </div>
             </div>
+            <div class="mt-4 rounded-[24px] bg-blue-50 border border-blue-100 min-h-[110px] p-3 flex items-center overflow-hidden">
+              ${emojiPreviewHtml(student.emojis, 'w-12 h-12')}
+            </div>
           </div>
-          <div class="mt-4 rounded-[24px] bg-blue-50 border border-blue-100 min-h-[110px] flex items-center justify-center overflow-hidden">
-            ${student.emoji ? `<img src="${emojiPath(student.emoji.file)}" alt="${student.emoji.title}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div style="display:none" class="w-full h-full items-center justify-center text-center text-xs font-bold text-slate-400 p-3">No se encontró ${student.emoji.file}</div>` : '<div class="text-sm text-slate-400 font-bold">Sin reconocimiento visual</div>'}
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
-      const presentCount = students.filter(s => s.attendance === 'P').length;
-      const absentCount = students.filter(s => s.attendance === 'A').length;
-      const stars = students.filter(s => s.emoji).length;
+      const totalParticipaciones = students.reduce(function(n, s){ return n + s.emojis.length; }, 0);
+      const reconocidos = students.filter(function(s){ return s.emojis.length; }).length;
       const copyCard = document.getElementById('copyCard');
       copyCard.classList.remove('hidden');
       copyCard.innerHTML = `
-        <div class="grid md:grid-cols-3 gap-3">
-          <div class="rounded-2xl bg-white border border-blue-100 p-3"><div class="text-xs text-slate-500">Presentes</div><div class="text-2xl font-black text-green-700">${presentCount}</div></div>
-          <div class="rounded-2xl bg-white border border-blue-100 p-3"><div class="text-xs text-slate-500">Ausentes</div><div class="text-2xl font-black text-red-700">${absentCount}</div></div>
-          <div class="rounded-2xl bg-white border border-blue-100 p-3"><div class="text-xs text-slate-500">Con emoji</div><div class="text-2xl font-black text-blue-700">${stars}</div></div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div class="rounded-2xl bg-white border border-blue-100 p-3"><div class="text-xs text-slate-500">Estudiantes con emojis</div><div class="text-2xl font-black text-blue-700">${reconocidos}</div></div>
+          <div class="rounded-2xl bg-white border border-blue-100 p-3"><div class="text-xs text-slate-500">Participaciones totales</div><div class="text-2xl font-black text-blue-900">${totalParticipaciones}</div></div>
         </div>
       `;
     }
@@ -433,7 +443,7 @@
       const canvas = await html2canvas(element, { scale: 2, backgroundColor: null, useCORS: true });
       const link = document.createElement('a');
       const course = (document.getElementById('courseName').value || 'curso').toLowerCase().replace(/\s+/g, '-');
-      link.download = `wof-${course}.png`;
+      link.download = 'wof-' + course + '.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
     }
